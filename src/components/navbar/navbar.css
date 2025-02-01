@@ -21,7 +21,15 @@
 .navButton{
   margin-left: 20px;
   border: none;
+  border-radius: 20px;
   padding: 5px 10px;
   cursor: pointer;
   color: #003580;
+}
+
+.logo{
+  font-size: 30px;
+  text-decoration: underline;
+  text-decoration-thickness:2px ;
+  text-underline-offset: 3px;
 }
