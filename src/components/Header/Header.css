@@ -52,5 +52,14 @@ width: 100%;
 max-width: 1024px;
 }
 .headerIcon{
-color: aquamarine;
+color: lightgrey;
+}
+.headerSearchItem{
+display: flex;
+align-items: center;
+gap: 10px;
+}
+.headerSearchText{
+color: lightgrey;
+cursor: pointer;
 }
