@@ -1,0 +1,35 @@
+.pList {
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap; /* Ensures responsiveness */
+}
+
+.pListItem {
+  display: flex;
+  flex-direction: column; /* Stack image and text vertically */
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  height: auto;
+}
+
+.pListImg {
+  width: 100%;
+  height: 200px; /* Adjust as needed */
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.pListTitles {
+  margin-top: 10px; /* Adds spacing between image and text */
+}
+.pListTitles>h1{
+  font-size: 26px;
+}
+.pListTitles>h2{
+  font-size: 18px;
+  font-weight: 500;
+}
