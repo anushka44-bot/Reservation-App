@@ -21,6 +21,7 @@
   height: 200px; /* Adjust as needed */
   object-fit: cover;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 .pListTitles {
