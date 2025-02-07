@@ -44,6 +44,30 @@
   align-items: center;
   cursor: pointer;
 }
+.lsOptions{
+  padding: 10px;
+}
+.lsOptionItem{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-style: 12px;
+  color: #555;
+}
+.lsOptionInput{
+  width: 50px;
+
+}
+.listSearch>button{
+  padding: 10px;
+  background-color: #0071c2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  font-weight: 500;
+  cursor: pointer;
+}
 .listResult{
   flex: 3;
 }
