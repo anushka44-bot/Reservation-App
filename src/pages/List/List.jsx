@@ -1,6 +1,7 @@
 import "./list.css";
 import Navbar from "../../components/navbar/navbar";
 import Header from "../../components/Header/Header";
+import Searchitem from "../../components/Searchitem/Searchitem";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { format } from "date-fns";
@@ -8,9 +9,17 @@ import { DateRange } from "react-date-range";
 
 const List = () => {
   const location = useLocation();
-  const [destination, setDestination] = useState(location.state.destination);
-  const [date, setDate] = useState(location.state.date);
-  const [options, setOptions] = useState(location.state.options);
+  const state = location.state || {}; // Ensure state is not null
+
+  const [destination, setDestination] = useState(state.destination || "");
+  const [date, setDate] = useState(
+    state.date || [
+      { startDate: new Date(), endDate: new Date(), key: "selection" },
+    ]
+  );
+  const [options, setOptions] = useState(
+    state.options || { adult: 1, children: 0, room: 1 }
+  );
   const [opendate, setOpendate] = useState(false);
 
   return (
@@ -27,10 +36,12 @@ const List = () => {
             </div>
             <div className="lsItem">
               <label>Check-in Date</label>
-              <span onClick={() => setOpendate(!opendate)}>{`${format(
-                date[0].startDate,
-                "dd/MM/yyyy"
-              )} to ${format(date[0].endDate, "dd/MM/yyyy")}`}</span>
+              <span onClick={() => setOpendate(!opendate)}>
+                {`${format(date[0].startDate, "dd/MM/yyyy")} to ${format(
+                  date[0].endDate,
+                  "dd/MM/yyyy"
+                )}`}
+              </span>
               {opendate && (
                 <DateRange
                   onChange={(item) => setDate([item.selection])}
@@ -85,7 +96,16 @@ const List = () => {
             </div>
             <button>Search</button>
           </div>
-          <div className="listResult"></div>
+          <div className="listResult">
+            <Searchitem />
+            <Searchitem />
+            <Searchitem />
+            <Searchitem />
+            <Searchitem />
+            <Searchitem />
+            <Searchitem />
+            <Searchitem />
+          </div>
         </div>
       </div>
     </div>
