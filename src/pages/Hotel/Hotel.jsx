@@ -18,11 +18,11 @@ const Hotel = () => {
 
   const photos = [
     { src: "/pics/Hotels.jpg" },
-    { src: "/pics/Hotels 2.jpg" },
-    { src: "/pics/Hotels 3.jpg" },
-    { src: "/pics/Hotels 4.jpg" },
-    { src: "/pics/Hotels 5.jpg" },
-    { src: "/pics/Hotels 6.jpg" },
+    { src: "/pics/Hotels.jpg" },
+    { src: "/pics/Hotels.jpg" },
+    { src: "/pics/Hotels.jpg" },
+    { src: "/pics/Hotels.jpg" },
+    { src: "/pics/Hotels.jpg" },
   ];
 
   const handleOpen = (i) => {
