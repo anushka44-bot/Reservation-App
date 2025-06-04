@@ -21,10 +21,10 @@
 .navButton{
   margin-left: 20px;
   border: none;
-  border-radius: 20px;
+  border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
-  color: #003580;
+  color: black;
 }
 
 .logo{
