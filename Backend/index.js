@@ -15,9 +15,10 @@ try{
   throw error
 }
 }
+app.use(express.json())
 
 app.use("/api/auth",authRoute)
-app.use("/apihotels",hotelsRoute)
+app.use("/api/hotels",hotelsRoute)
 app.use("/api/users",usersRoute)
 app.use("/api/rooms",roomsRoute)
 
