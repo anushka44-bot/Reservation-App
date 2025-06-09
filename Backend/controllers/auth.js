@@ -3,48 +3,63 @@ import bcrypt from "bcryptjs"
 import { createError } from "../utils/error.js";
 import jwt from "jsonwebtoken"
 
-export const register=async(req,res,next)=>{
+export const register = async (req, res, next) => {
   try {
+    const { username, email, password } = req.body;
 
-    const salt=bcrypt.genSaltSync(10);
-    const hash=bcrypt.hashSync(req.body.password,salt);
-    
-    const newUser=new User({
-    username:req.body.username,
-    email:req.body.email,
-    password:hash,
-  })
-  await newUser.save()
-  res.status(200).json("User created succesfully")
+    // Check if password is provided
+    if (!password) {
+      return next(createError(400, "Password is required"));
+    }
+
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
+
+    const newUser = new User({
+      username,
+      email,
+      password: hash,
+    });
+
+    await newUser.save();
+    res.status(200).json("User created successfully");
   } catch (err) {
-    next(err)
+    next(err);
   }
-}
+};
 
-export const login=async(req,res,next)=>{
+
+export const login = async (req, res, next) => {
   try {
+    const { username, password } = req.body;
 
-    const user= await User.findOne({
-      username:req.body.username
-    })
-    if(!user) 
-      return next(createError(404,"User not found!!"))
+    if (!username || !password) {
+      return next(createError(400, "Username and password are required"));
+    }
 
-    const isPasswordCorrect=await bcrypt.compare(req.body.password,user.password)
-    if(!isPasswordCorrect)
-       return next(createError(400,"Wrong password or username"))
-      
-    const token=jwt.sign({
-      id:user._id, isAdmin:user.isAdmin
-    },process.env.JWT)
+    const user = await User.findOne({ username });
+    if (!user) return next(createError(404, "User not found"));
 
-      const{password,isAdmin,...otherdetails}=user._doc;
-  res.
-  cookie("access_token",token,{
-    httpOnly:true,
-  })
-  .status(200).json({...otherdetails})
+    if (!user.password) {
+      return next(createError(500, "User password is missing"));
+    }
+
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if (!isPasswordCorrect)
+      return next(createError(400, "Wrong password or username"));
+
+    const token = jwt.sign(
+      { id: user._id, isAdmin: user.isAdmin },
+      process.env.JWT
+    );
+
+    const { password: pwd, isAdmin, ...otherDetails } = user._doc;
+
+    res
+      .cookie("access_token", token, { httpOnly: true })
+      .status(200)
+      .json({ ...otherDetails });
   } catch (err) {
-    next(err)
+    next(err);
   }
-}
+};
