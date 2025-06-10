@@ -6,6 +6,9 @@ import hotelsRoute from "./routes/hotels.js"
 import usersRoute from "./routes/users.js"
 import roomsRoute from "./routes/rooms.js"
 import cookieParser from "cookie-parser"
+import cors from "cors"
+
+
 const app=express()
 dotenv.config()
 
@@ -16,7 +19,7 @@ try{
   throw error
 }
 }
-
+app.use(cors())
 app.use(cookieParser())
 app.use(express.json())
 
