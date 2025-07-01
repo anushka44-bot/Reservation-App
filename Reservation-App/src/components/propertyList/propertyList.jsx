@@ -1,45 +1,45 @@
+import useFetch from "../../hooks/useFetch";
 import "./propertyList.css";
 
-function propertyList() {
+function PropertyList() {
+  const { data, loading, error } = useFetch(
+    "http://localhost:8800/api/hotels/countByType"
+  );
+
+  const images = [
+    "pics/Hotels.jpg",
+    "pics/Apartment.jpg",
+    "pics/Resorts.jpg",
+    "pics/Villa.jpg",
+    "pics/Cabin.jpg",
+  ];
+
   return (
     <div className="pList">
-      <div className="pListItem">
-        <img src="pics/Hotels.jpg" alt="Hotels" className="pListImg" />
-        <div className="pListTitles">
-          <h1>Hotels</h1>
-          <h2>233 hotels</h2>
-        </div>
-      </div>
-      <div className="pListItem">
-        <img src="pics/Apartment.jpg" alt="Apartments" className="pListImg" />
-        <div className="pListTitles">
-          <h1>Apartments</h1>
-          <h2>243 Apartments</h2>
-        </div>
-      </div>
-      <div className="pListItem">
-        <img src="pics/Cabin.jpg" alt="Cabin" className="pListImg" />
-        <div className="pListTitles">
-          <h1>Cabins</h1>
-          <h2>143 Cabins</h2>
-        </div>
-      </div>
-      <div className="pListItem">
-        <img src="pics/Resorts.jpg" alt="Resorts" className="pListImg" />
-        <div className="pListTitles">
-          <h1>Resorts</h1>
-          <h2>273 Resorts</h2>
-        </div>
-      </div>
-      <div className="pListItem">
-        <img src="pics/Villa.jpg" alt="Villas" className="pListImg" />
-        <div className="pListTitles">
-          <h1>Villas</h1>
-          <h2>313 Villas</h2>
-        </div>
-      </div>
+      {loading ? (
+        "loading please wait"
+      ) : (
+        <>
+          {data &&
+            images.map((img, i) => (
+              <div className="pListItem" key={i}>
+                <img
+                  src={img}
+                  alt={data[i]?.type || "property"}
+                  className="pListImg"
+                />
+                <div className="pListTitles">
+                  <h1>{data[i]?.type}</h1>
+                  <h2>
+                    {data[i]?.count} {data[i]?.type}
+                  </h2>
+                </div>
+              </div>
+            ))}
+        </>
+      )}
     </div>
   );
 }
 
-export default propertyList;
+export default PropertyList;
