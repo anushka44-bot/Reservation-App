@@ -1,37 +1,48 @@
 import "./Searchitem.css";
+import { Link } from "react-router-dom";
 
-function Searchitem() {
+const images = [
+  "pics/Hotels.jpg",
+  "pics/Apartment.jpg",
+  "pics/Resorts.jpg",
+  "pics/Villa.jpg",
+  "pics/Cabin.jpg",
+];
+
+function SearchItem({ item, index }) {
   return (
     <div className="searchitem">
-      <img src="pics/hotelsimg.jpg" alt="Item" className="siImg" />
+      <img src={images[index % images.length]} alt="Item" className="siImg" />
       <div className="siDesc">
-        <h1 className="siTitle">Tower street Apartment</h1>
-        <span className="siDistance">500m from center</span>
+        <h1 className="siTitle">{item.name}</h1>
+        <span className="siDistance">{item.distance}m from center</span>
         <span className="siTaxiOp">Free airport taxi</span>
         <span className="siSubtitle">
-          Studio Apartment wuth Air conditioning
+          Studio Apartment with Air conditioning
         </span>
-        <span className="siFeatures">
-          Entire studio • 1 bathroom • 21m² 1 full bed
-        </span>
+        <span className="siFeatures">{item.desc}</span>
         <span className="siCancelOp">Free cancellation</span>
         <span className="siCancelOpSubtitle">
-          You can cancel later,so lock in this great price today!
+          You can cancel later, so lock in this great price today!
         </span>
       </div>
       <div className="siDetails">
-        <div className="siRating">
-          <span>Excellent</span>
-          <button>8.9</button>
-        </div>
+        {item.rating && (
+          <div className="siRating">
+            <span>Excellent</span>
+            <button>{item.rating}</button>
+          </div>
+        )}
         <div className="siDetailTexts">
-          <span className="siPrice">10000 INR</span>
+          <span className="siPrice">{item.cheapestPrice} INR</span>
           <div className="siTaxOp">Includes taxes and fees</div>
-          <button className="siCheckButton">See availability</button>
+          <Link to={`/hotels/${item._id}`}>
+            <button className="siCheckButton">See availability</button>
+          </Link>
         </div>
       </div>
     </div>
   );
 }
 
-export default Searchitem;
+export default SearchItem;
