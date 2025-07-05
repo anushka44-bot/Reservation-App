@@ -40,15 +40,15 @@ try{
 
 //GET
 
-export const getHotel=async(req,res,next)=>{
-  try{
-  const Hotel= await Hotel.findById(req.params.id,
-  );
-  res.status(200).json(Hotel)
-}catch(err){
-  next(err)
-}
-}
+export const getHotel = async (req, res, next) => {
+  try {
+    const hotel = await Hotel.findById(req.params.id);
+    if (!hotel) return res.status(404).json({ message: "Not found" });
+    res.status(200).json(hotel);
+  } catch (err) {
+    next(err);
+  }
+};
 
 //GETALL
 
