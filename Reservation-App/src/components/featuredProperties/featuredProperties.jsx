@@ -7,10 +7,10 @@ const FeaturedProperties = () => {
   );
 
   const images = [
-    "pics/Hotels.jpg",
-    "pics/Apartment.jpg",
-    "pics/Resorts.jpg",
-    "pics/Villa.jpg",
+    "pics/1.webp",
+    "pics/2.webp",
+    "pics/3.jpg",
+    "pics/4.webp",
     "pics/Cabin.jpg",
   ];
 

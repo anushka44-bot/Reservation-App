@@ -37,12 +37,12 @@ const Hotel = () => {
   const days = dayDifference(dates[0].endDate, dates[0].startDate);
 
   const photos = [
-    { src: "/pics/Hotels.jpg" },
-    { src: "/pics/Hotels.jpg" },
-    { src: "/pics/Hotels.jpg" },
-    { src: "/pics/Hotels.jpg" },
-    { src: "/pics/Hotels.jpg" },
-    { src: "/pics/Hotels.jpg" },
+    { src: "/pics/d1.webp" },
+    { src: "/pics/d2.jpg" },
+    { src: "/pics/d3.png" },
+    { src: "/pics/d4.jpg" },
+    { src: "/pics/d5.jpeg" },
+    { src: "/pics/d6.webp" },
   ];
 
   const handleOpen = (i) => {
@@ -103,7 +103,7 @@ const Hotel = () => {
             </div>
 
             <span className="hotelDistance">
-              Excellent location {data?.distance}m from center
+              Excellent location {data?.distance} km from Airport
             </span>
 
             <span className="hotelPriceHighlight">
